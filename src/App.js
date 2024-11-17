@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { ThemeProvider } from "styled-components";
+import "./App.css";
+import GlobalStyle from "./BaseStyles";
+import { darkMode, lightMode } from "./components/Theme";
 
 function App() {
   return (
-    <div className="App">
-     
-    </div>
+    <>
+      <GlobalStyle />
+      <ThemeProvider theme={darkMode}>App File</ThemeProvider>
+    </>
   );
 }
 
