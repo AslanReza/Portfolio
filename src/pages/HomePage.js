@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import PowerButton from "../components/subComponents/PowerButton";
+import LogoComponent from "../components/subComponents/LogoComponent";
+import SocialSideBar from "../components/subComponents/SocialSideBar";
 const MainContainer = styled.div`
   background: ${(props) => props.theme.body};
   width: 100vw;
@@ -26,6 +28,8 @@ const HomePage = () => {
     <MainContainer>
       <Container>
         <PowerButton />
+        <LogoComponent />
+        <SocialSideBar />
       </Container>
     </MainContainer>
   );
