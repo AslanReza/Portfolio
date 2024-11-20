@@ -1,7 +1,7 @@
 import { ThemeProvider } from "styled-components";
 import "./App.css";
 import GlobalStyle from "./BaseStyles";
-import { lightMode } from "./components/Theme";
+import { lightMode } from "./components/themes/Theme";
 import HomePage from "./pages/HomePage";
 import AboutPage from "./pages/AboutPage";
 import SkillsPage from "./pages/SkillsPage";
