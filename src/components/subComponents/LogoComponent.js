@@ -9,6 +9,7 @@ const Logo = styled.h1`
   left: 2rem;
   top: 2rem;
   z-index: 3;
+  cursor: pointer;
 `;
 const LogoComponent = (props) => {
   return <Logo color={props.theme}>R</Logo>;
