@@ -8,7 +8,8 @@ const Power = styled.button`
   left: 50%;
   transform: translate(-50%, 0);
   background-color: #fcf6f4;
-  padding: 0.3rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.1rem;
   border-radius: 50%;
   text-align: center;
   display: flex;
