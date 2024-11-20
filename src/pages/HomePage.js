@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 import PowerButton from "../components/subComponents/PowerButton";
 import LogoComponent from "../components/subComponents/LogoComponent";
 import SocialSideBar from "../components/subComponents/SocialSideBar";
 import { NavLink } from "react-router-dom";
 import { YinYangIcon } from "../components/AllSvgs";
+import { click } from "@testing-library/user-event/dist/click";
+import PrimerBox from "../components/PrimerBox";
+import { motion } from "motion/react";
 const MainContainer = styled.div`
   background: ${(props) => props.theme.body};
   width: 100vw;
@@ -42,7 +45,7 @@ const Blog = styled(NavLink)`
   z-index: 1;
 `;
 const Work = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   position: absolute;
   top: 50%;
   transform: translate(-50%, -50%) rotate(-90deg);
@@ -56,7 +59,7 @@ const Skill = styled(NavLink)`
   z-index: 1;
 `;
 const About = styled(NavLink)`
-  color: ${(props) => props.theme.text};
+  color: ${(props) => (props.click ? props.theme.body : props.theme.text)};
   text-decoration: none;
   z-index: 1;
 `;
@@ -80,8 +83,8 @@ to{
 `;
 const Core = styled.button`
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: ${(props) => (props.click ? "85%" : "50%")};
+  left: ${(props) => (props.click ? "90%" : "50%")};
   transform: translate(-50%, -50%);
   outline: none;
   border: none;
@@ -91,46 +94,78 @@ const Core = styled.button`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 1s ease;
   & > :first-child {
     animation: ${Rotate} infinite 1.5s linear;
   }
   & > :last-child {
     padding-top: 1rem;
+    display: ${(props) => (props.click ? "none" : "inline-block")};
   }
 `;
-
+const DarkSection = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 50%;
+  width: ${(props) => (props.click ? "50% " : "0")};
+  height: ${(props) => (props.click ? "100% " : "0")};
+  z-index: 1;
+  background-color: #000;
+  transition: height 0.5s ease, width 1s ease 0.5s;
+`;
 const HomePage = () => {
+  const [click, setClick] = useState(false);
+  const handleClick = () => setClick(!click);
+
   return (
     <MainContainer>
       <Container>
         <PowerButton />
-        <LogoComponent />
-        <SocialSideBar />
-        <Core>
-          <YinYangIcon width={200} height={200} fill="currentColor" />
-          <span>Click Here</span>
+        <LogoComponent to="/" theme={click ? "dark" : "light"} />
+        <SocialSideBar theme={click ? "dark" : "light"} />
+        <DarkSection click={click} />
+        <Core click={click}>
+          <YinYangIcon
+            onClick={() => handleClick()}
+            width={click ? 120 : 200}
+            height={click ? 120 : 200}
+            fill="currentColor"
+          />
+          <span>Click Here!</span>
         </Core>
         <Contact
           target="_blank"
           to={{ pathname: "mailto:aslanreza77@gmail.com" }}
         >
-          <h2>Say Hi</h2>
+          <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            Say Hi
+          </motion.h2>
         </Contact>
         <Blog to="/blog">
-          <h2>Blog</h2>
+          <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            Blog
+          </motion.h2>
         </Blog>
-        <Work to="/work">
-          <h2>Work</h2>
+        <Work to="/work" click={click}>
+          <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            Work
+          </motion.h2>
         </Work>
         <BottomSection>
-          <Skill to="/skills">
-            <h2>Skills</h2>
-          </Skill>
-          <About to="/about">
-            <h2>About</h2>
+          <About to="/about" click={click}>
+            <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              About
+            </motion.h2>
           </About>
+          <Skill to="/skills">
+            <motion.h2 whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              Skills
+            </motion.h2>
+          </Skill>
         </BottomSection>
       </Container>
+      {click ? <PrimerBox click={click} /> : null}
     </MainContainer>
   );
 };
