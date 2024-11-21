@@ -83,6 +83,7 @@ const BlogPage = () => {
             })}
           </GridItem>
         </Main>
+        <BigTitleBlog text="BLOG" top="4rem" left="4rem" />
       </Container>
     </MainContainer>
   );
