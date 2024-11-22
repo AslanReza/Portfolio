@@ -1,5 +1,8 @@
 import React from "react";
+import { MdDateRange } from "react-icons/md";
 import styled from "styled-components";
+import { CiHashtag } from "react-icons/ci";
+import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
 const BlogBox = styled(NavLink)`
   width: calc(10rem + 15vw);
@@ -47,27 +50,58 @@ const Title = styled.h3`
 
 const HashTags = styled.div`
   padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 `;
 const Tag = styled.span`
   padding-right: 0.5rem;
+  display: flex;
+  align-items: center;
 `;
 const Date = styled.span`
   padding: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  gap: 2px;
 `;
-
+const Container = styled(motion.div)``;
+const Item = {
+  hidden: {
+    scale: 0,
+  },
+  show: {
+    scale: 1,
+    transition: {
+      type: "spring",
+      duration: 0.5,
+    },
+  },
+};
 const BlogComponent = (props) => {
   const { name, tags, date, imgSrc, link } = props.blog;
   return (
-    <BlogBox target="_blank" to={{ pathname: link }}>
-      <Image img={imgSrc} />
-      <Title>{name}</Title>
-      <HashTags>
-        {tags.map((t, id) => {
-          return <Tag key={id}>#{t}</Tag>;
-        })}
-      </HashTags>
-      <Date>{date}</Date>
-    </BlogBox>
+    <Container variants={Item}>
+      <BlogBox target="_blank" href={`${link}`}>
+        <Image img={imgSrc} />
+        <Title>{name}</Title>
+        <HashTags>
+          {tags.map((t, id) => {
+            return (
+              <Tag key={id}>
+                {" "}
+                <CiHashtag />
+                {t}
+              </Tag>
+            );
+          })}
+        </HashTags>
+        <Date>
+          <MdDateRange />
+          {date}
+        </Date>
+      </BlogBox>
+    </Container>
   );
 };
 

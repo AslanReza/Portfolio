@@ -1,26 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import cover from "../assets/photos/img/cover.jpg";
-import cover_v2 from "../assets/photos/img/cover-v2.jpg";
-import cover_v3 from "../assets/photos/img/cover-v3.jpg";
-import cover_v4 from "../assets/photos/img/cover-v4.jpg";
+import cover_3 from "../assets/photos/img/cover-v3.jpg";
 import LogoComponent from "../components/subComponents/LogoComponent";
 import PowerButton from "../components/subComponents/PowerButton";
 import SocialSideBar from "../components/subComponents/SocialSideBar";
 import BlogComponent from "../components/BlogComponent";
 import { Blogs } from "../data/BlogData";
 import { motion } from "framer-motion";
-import BigTitleBlog from "../components/subComponents/BigTitleBlog";
+import BigTitle from "../components/subComponents/BigTitle";
 import AnchorComponent from "../components/subComponents/AnchorComponent";
 
 const MainContainer = styled(motion.div)`
-  background-image: url(${cover});
+  background-image: url(${cover_3});
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
 `;
 const Container = styled.div`
   background-color: ${(props) => `rgba(${props.theme.bodyRgba},0.8)`};
@@ -83,7 +80,7 @@ const BlogPage = () => {
             })}
           </GridItem>
         </Main>
-        <BigTitleBlog text="BLOG" top="4rem" left="4rem" />
+        <BigTitle text="BLOG" top="4rem" left="4rem" />
       </Container>
     </MainContainer>
   );
