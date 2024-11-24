@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import ParticlesComponent from "../components/subComponents/ParticleComponent";
 import cover_3 from "../assets/photos/img/cover-v3.jpg";
 import LogoComponent from "../components/subComponents/LogoComponent";
 import PowerButton from "../components/subComponents/PowerButton";
@@ -68,6 +69,7 @@ const BlogPage = () => {
         <LogoComponent />
         <PowerButton />
         <SocialSideBar />
+        <ParticlesComponent theme="star" />
         <AnchorComponent number={numbers} />
         <Main>
           <GridItem
