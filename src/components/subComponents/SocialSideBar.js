@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { darkMode, lightMode } from "../themes/Theme";
+import { delay, motion } from "framer-motion";
 import {
   GithubIcon,
   InstagramIcon,
@@ -20,7 +21,7 @@ const Icons = styled.div`
     margin: 0.4rem 0;
   }
 `;
-const Line = styled.span`
+const Line = styled(motion.span)`
   width: 2px;
   height: 8rem;
   background-color: ${(props) =>
@@ -29,7 +30,11 @@ const Line = styled.span`
 const SocialSideBar = (props) => {
   return (
     <Icons>
-      <div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1, 2, 1] }}
+        transition={{ type: "spring", duration: 1, delay: 1 }}
+      >
         <NavLink
           style={{ color: "inherit" }}
           target="_blank"
@@ -41,8 +46,12 @@ const SocialSideBar = (props) => {
             fill={props.theme === "dark" ? darkMode.text : darkMode.body}
           />
         </NavLink>
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1, 2, 1] }}
+        transition={{ type: "spring", duration: 1, delay: 1.2 }}
+      >
         <NavLink
           style={{ color: "inherit" }}
           target="_blank"
@@ -56,8 +65,12 @@ const SocialSideBar = (props) => {
             fill={props.theme === "dark" ? darkMode.text : darkMode.body}
           />
         </NavLink>
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1, 2, 1] }}
+        transition={{ type: "spring", duration: 1, delay: 1.4 }}
+      >
         <NavLink
           style={{ color: "inherit" }}
           target="_blank"
@@ -71,8 +84,12 @@ const SocialSideBar = (props) => {
             fill={props.theme === "dark" ? darkMode.text : darkMode.body}
           />
         </NavLink>
-      </div>
-      <div>
+      </motion.div>
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: [0, 1, 2, 1] }}
+        transition={{ type: "spring", duration: 1, delay: 1.6 }}
+      >
         <NavLink
           style={{ color: "inherit" }}
           target="_blank"
@@ -84,8 +101,21 @@ const SocialSideBar = (props) => {
             fill={props.theme === "dark" ? darkMode.text : darkMode.body}
           />
         </NavLink>
-      </div>
-      <Line color={props.theme} />
+      </motion.div>
+      <Line
+        color={props.theme}
+        initial={{
+          height: 0,
+        }}
+        animate={{
+          height: "8rem",
+        }}
+        transition={{
+          type: "spring",
+          duration: 1,
+          delay: 0.8,
+        }}
+      />
     </Icons>
   );
 };

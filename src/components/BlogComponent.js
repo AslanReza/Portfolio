@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { CiHashtag } from "react-icons/ci";
 import { motion } from "framer-motion";
 import { NavLink } from "react-router-dom";
-const BlogBox = styled(NavLink)`
+const BlogBox = styled(motion(NavLink))`
   width: calc(10rem + 15vw);
   text-decoration: none;
   height: 20rem;
