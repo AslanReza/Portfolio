@@ -8,6 +8,7 @@ import PowerButton from "../components/subComponents/PowerButton";
 import SocialSideBar from "../components/subComponents/SocialSideBar";
 import BlogComponent from "../components/BlogComponent";
 import { Blogs } from "../data/BlogData";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import BigTitle from "../components/subComponents/BigTitle";
 import AnchorComponent from "../components/subComponents/AnchorComponent";
@@ -23,7 +24,7 @@ const MainContainer = styled(motion.div)`
 const Container = styled.div`
   background-color: ${(props) => `rgba(${props.theme.bodyRgba},0.8)`};
   width: 100%;
-  height: auto;
+  min-height: 100vh;
   position: relative;
   padding-bottom: 5rem;
 `;
@@ -77,9 +78,14 @@ const BlogPage = () => {
             animate={{ height: "auto" }}
             transition={{ type: "spring", duration: 2, delay: 1 }}
           >
-            {Blogs.map((blog) => {
+            {Blogs.map((blog) => (
+              <Link key={blog.id} to={blog.link}>
+                <BlogComponent blog={blog} />
+              </Link>
+            ))}
+            {/* {Blogs.map((blog) => {
               return <BlogComponent key={blog.id} blog={blog} />;
-            })}
+            })} */}
           </GridItem>
         </Main>
         <BigTitle text="BLOG" top="4rem" left="4rem" />
